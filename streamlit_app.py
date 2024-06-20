@@ -68,7 +68,7 @@ def evaluate_model(model, X_test, y_test):
     matrix = confusion_matrix(y_test, y_pred)
     return accuracy, report, matrix
 
-# Login function
+# Login function with debug
 def login():
     st.title("Login")
 
@@ -76,6 +76,8 @@ def login():
     password = st.text_input("Password", type="password")
 
     if st.button("Login"):
+        st.write(f"Entered Username: {username}")  # Debug
+        st.write(f"Entered Password: {password}")  # Debug
         if username in CREDENTIALS and CREDENTIALS[username] == password:
             st.success("Logged in successfully!")
             st.session_state.logged_in = True
@@ -90,6 +92,8 @@ if not st.session_state.logged_in:
     login()
 else:
     st.title('Autism Spectrum Disorder Detection')
+
+    # The rest of your code...
 
     uploaded_train_file = st.file_uploader("Choose a CSV file for training", type="csv")
     uploaded_test_file = st.file_uploader("Choose a CSV file for testing", type="csv")
